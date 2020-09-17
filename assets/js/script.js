@@ -1,6 +1,7 @@
 var titleListEl = $("#titleList")
 var titleArray = [];
 var cors = "https://cors-anywhere.herokuapp.com/"
+var currentTime = moment().format("YYYY-MM-DDTHH:mm:ss") + "Z";
 var settings = {
     "url": cors + "https://api-gate2.movieglu.com/filmsNowShowing/?",
     "method": "GET",
@@ -12,7 +13,7 @@ var settings = {
     "territory":	"US",
     "api-version":	"v200",
     "geolocation":	"52.47;-1.93",
-    "device-datetime":	"2018-09-14T08:30:17.360Z"
+    "device-datetime":	currentTime
     
     },
     };
@@ -38,4 +39,6 @@ var settings = {
     
     }
     });
+
+    console.log(currentTime)
     
