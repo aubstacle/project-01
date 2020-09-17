@@ -1,21 +1,5 @@
-// var Array = ["Tenet", "Dumb and dumberererer", "whocares","appeeeiamiright"]
-
-// var titleListEl = $("#titleList")
-
-// for(i = 0; i < Array.length; i++){
-//     var listEl = $("<li>");
-//     var titleButtonEl = $("<button>");
-//     titleButtonEl.attr("class", "btn btn-primary");
-//     titleButtonEl.attr("type", "button")
-//     titleButtonEl.attr("id", Array[i]);
-//     titleButtonEl.text(Array[i]);
-//     listEl.append(titleButtonEl);
-//     titleListEl.append(listEl);
-
-
-// }
-
-
+var titleListEl = $("#titleList")
+var titleArray = [];
 var cors = "https://cors-anywhere.herokuapp.com/"
 var settings = {
     "url": cors + "https://api-gate2.movieglu.com/filmsNowShowing/?",
@@ -35,4 +19,23 @@ var settings = {
     
     $.ajax(settings).done(function (response) {
     console.log(response);
+    for(i = 0; i < 10; i++){
+        console.log(response.films[i].film_name)
+        titleArray.push(response.films[i].film_name)
+        
+    }
+    console.log(titleArray)
+    for(i = 0; i < titleArray.length; i++){
+        var listEl = $("<li>");
+        var titleButtonEl = $("<button>");
+        titleButtonEl.attr("class", "btn btn-primary");
+        titleButtonEl.attr("type", "button")
+        titleButtonEl.attr("id", titleArray[i]);
+        titleButtonEl.text(titleArray[i]);
+        listEl.append(titleButtonEl);
+        titleListEl.append(listEl);
+    
+    
+    }
     });
+    
