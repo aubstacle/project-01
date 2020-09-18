@@ -6,3 +6,9 @@
   text-align: center;
   color: aliceblue;
 }
+
+.header-style {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-style: italic;
+  font-weight: bolder;
+}
