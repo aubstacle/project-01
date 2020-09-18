@@ -65,3 +65,15 @@ $.ajax(closestSettings).done(function (response) {
     console.log(response)
 
 })
+
+var yelpSettings = {
+    "url": cors + "https://api.yelp.com/v3/businesses/search?latitude=33.771568&longitude=-84.386330",
+    "method": "GET",
+    "headers": {           
+    "authorization":	"Bearer qItHfBqMcXSXkVpMIcSF71I2KbHwRJ-rxNbzAQGIHcPc-OHxM0V-xAedcHX55dgcgoxi_VEKSgbC9RBnQjdAqDQDgvbo_lENXqYxeGhD6GV_KLJHPCKKYznDY1diX3Yx", 
+    },
+    };
+
+$.ajax(yelpSettings).done(function (yelpResponse){
+    console.log(yelpResponse)
+})
