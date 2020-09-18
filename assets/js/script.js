@@ -7,27 +7,27 @@ var settings = {
     "method": "GET",
     "timeout": 0,
     "headers": {
-    "x-api-key" :	"Mp2rRwXPBY7u6E65iDkcP8hvW5DHwtjf565GbJw8",
-    "client":	"GT",
-    "authorization":	"Basic R1Q6RHQwS3ZEVmdCNDl4",
-    "territory":	"US",
-    "api-version":	"v200",
-    "geolocation":	"52.47;-1.93",
-    "device-datetime":	currentTime
-    
+        "x-api-key": "Mp2rRwXPBY7u6E65iDkcP8hvW5DHwtjf565GbJw8",
+        "client": "GT",
+        "authorization": "Basic R1Q6RHQwS3ZEVmdCNDl4",
+        "territory": "US",
+        "api-version": "v200",
+        "geolocation": "52.470000;-1.930000",
+        "device-datetime": currentTime
+
     },
-    };
-    
-    $.ajax(settings).done(function (response) {
+};
+
+$.ajax(settings).done(function (response) {
     console.log(response);
-    for(i = 0; i < 10; i++){
+    for (i = 0; i < 10; i++) {
         console.log(response.films[i].film_name)
         titleArray.push(response.films[i].film_name)
-        
+
     }
     console.log(titleArray)
-    for(i = 0; i < titleArray.length; i++){
-        var listEl = $("<li>");
+    for (i = 0; i < titleArray.length; i++) {
+        var listEl = $("<div>");
         var titleButtonEl = $("<button>");
         titleButtonEl.attr("class", "btn btn-primary");
         titleButtonEl.attr("type", "button")
@@ -35,10 +35,9 @@ var settings = {
         titleButtonEl.text(titleArray[i]);
         listEl.append(titleButtonEl);
         titleListEl.append(listEl);
-    
-    
-    }
-    });
 
-    console.log(currentTime)
-    
+
+    }
+});
+
+console.log(currentTime)
