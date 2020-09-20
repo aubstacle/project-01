@@ -1,4 +1,5 @@
 var titleListEl = $("#titleList")
+var headlinEl = $("#headline")
 var titleArray = [];
 var buttonIdArray = [];
 var cinemaArray = [];
@@ -58,6 +59,7 @@ $(document).on("click", ".titleBtn", function (event) {
     selectedFilmName = $(event.target).text();
     selectedFilmId = $(event.target).attr("id");
     titleListEl.empty();
+    headlinEl.text("Nearby Theaters");
     console.log(selectedFilmId)
 
     var closestSettings = {
@@ -109,6 +111,7 @@ $(document).on("click", ".titleBtn", function (event) {
 
 $(document).on("click", ".theaterBtn", function (event) {
     titleListEl.empty();
+    headlinEl.text("Closest Restaurants By Your Theater");
     selectedTheaterId = $(event.target).attr("id");
     selectedTheaterName = $(event.target).text();
     console.log(selectedTheaterId)
@@ -148,6 +151,7 @@ $(document).on("click", ".restaurantBtn", function (event) {
     selectedRestaurantName = $(event.target).text();
     console.log("test");
     titleListEl.empty();
+    headlinEl.text("Your Picks");
     console.log(selectedFilmName)
     console.log(selectedTheaterName)
     console.log(selectedRestaurantName)
