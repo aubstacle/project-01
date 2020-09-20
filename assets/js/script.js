@@ -2,10 +2,32 @@ var titleListEl = $("#titleList");
 var headlinEl = $("#headline");
 var titleArray = [];
 var buttonIdArray = [];
+var titlePosterArray = [];
+var titleSynopsisArray = [];
+var titleTrailerArray = [];
+var selectedPoster = "";
+var selectedSynopsis = "";
+var selectedTrailer = "";
 var cinemaArray = [];
+var cinemaAddressArray = [];
+var cinemaCityArray = [];
+var cinemaStateArray = [];
+var cinemaZipArray = [];
+var cinemaDistanceArray = [];
+var selectedAddress = "";
+var selectedCity = "";
+var selectedState = "";
+var selectedZip = "";
+var selectedDistance = "";
 var restaurantArray = [];
 var cinemaLatArray = [];
 var cinemaLongArray = [];
+var restaurantDistanceArray = [];
+var restaurantImageArray = [];
+var restaurantURLArray = [];
+var selectedRestaurantDistance = "";
+var selectedRestaurantImage = "";
+var selectedRestaurantURL = "";
 var cors = "https://cors-anywhere.herokuapp.com/";
 var currentTime = moment().format("YYYY-MM-DDTHH:mm:ss") + "Z";
 var selectedFilmName = "";
@@ -30,18 +52,20 @@ var filmSettings = {
 
 $.ajax(filmSettings).done(function (response) {
     for (i = 0; i < 10; i++) {
-        // console.log(response.films[i].film_name)
         titleArray.push(response.films[i].film_name);
         buttonIdArray.push(response.films[i].film_id);
+        titlePosterArray.push(response.films[i].images.poster[1].medium.film_image)
+        titleSynopsisArray.push(response.films[i].synopsis_long)
+        titleTrailerArray.push(response.films[i].film_trailer)
+       
     }
-    // console.log(titleArray)
-    // console.log(buttonIdArray)
+    
     for (i = 0; i < titleArray.length; i++) {
         var listEl = $("<h6>");
         var titleButtonEl = $("<button>");
         titleButtonEl.attr("class", "card titleBtn");
         titleButtonEl.attr("type", "button");
-        titleButtonEl.attr("id", buttonIdArray[i]);
+        titleButtonEl.attr("id", i);
         titleButtonEl.text(titleArray[i]);
         listEl.append(titleButtonEl);
         titleListEl.append(listEl);
@@ -52,10 +76,14 @@ $.ajax(filmSettings).done(function (response) {
 
 $(document).on("click", ".titleBtn", function (event) {
     selectedFilmName = $(event.target).text();
-    selectedFilmId = $(event.target).attr("id");
+    selectedFilmId = buttonIdArray[$(event.target).attr("id")];
     titleListEl.empty();
     headlinEl.text("Nearby Theaters");
     console.log(selectedFilmId);
+    selectedPoster = titlePosterArray[$(event.target).attr("id")]
+    selectedSynopsis = titleSynopsisArray[$(event.target).attr("id")]
+    selectedTrailer = titleTrailerArray[$(event.target).attr("id")]
+
 
     var closestSettings = {
         url:
@@ -80,16 +108,19 @@ $(document).on("click", ".titleBtn", function (event) {
             cinemaArray.push(response.cinemas[i].cinema_name);
             cinemaLatArray.push(response.cinemas[i].lat);
             cinemaLongArray.push(response.cinemas[i].lng);
+            cinemaAddressArray.push(response.cinemas[i].address);
+            cinemaCityArray.push(response.cinemas[i].city);
+            cinemaStateArray.push(response.cinemas[i].state);
+            cinemaZipArray.push(response.cinemas[i].postcode);
+            cinemaDistanceArray.push(response.cinemas[i].distance);
         }
-        console.log(response);
-        console.log(cinemaLatArray);
-        console.log(cinemaLongArray);
+       
         for (i = 0; i < cinemaArray.length; i++) {
             var listEl = $("<h6>");
             var titleButtonEl = $("<button>");
             titleButtonEl.attr("class", "card theaterBtn");
             titleButtonEl.attr("type", "button");
-            titleButtonEl.attr("id", cinemaLatArray[i] + "," + cinemaLongArray[i]);
+            titleButtonEl.attr("id", i);
             titleButtonEl.text(cinemaArray[i]);
             listEl.append(titleButtonEl);
             titleListEl.append(listEl);
@@ -100,11 +131,14 @@ $(document).on("click", ".titleBtn", function (event) {
 $(document).on("click", ".theaterBtn", function (event) {
     titleListEl.empty();
     headlinEl.text("Nearest Restaurants");
-    selectedTheaterId = $(event.target).attr("id");
+    selectedTheaterId = cinemaLatArray[$(event.target).attr("id")] + "," + cinemaLongArray[$(event.target).attr("id")];
     selectedTheaterName = $(event.target).text();
-    console.log(selectedTheaterId);
+    selectedAddress = cinemaAddressArray[$(event.target).attr("id")]
+    selectedCity = cinemaCityArray[$(event.target).attr("id")]
+    selectedState = cinemaStateArray[$(event.target).attr("id")]
+    selectedZip = cinemaZipArray[$(event.target).attr("id")]
+    selectedDistance = cinemaDistanceArray[$(event.target).attr("id")]
     latLongArray = selectedTheaterId.split(",");
-    console.log(latLongArray);
     var yelpSettings = {
         url:
             cors +
@@ -123,6 +157,10 @@ $(document).on("click", ".theaterBtn", function (event) {
         console.log(yelpResponse);
         for (i = 0; i < 10; i++) {
             restaurantArray.push(yelpResponse.businesses[i].name);
+            restaurantDistanceArray.push(yelpResponse.businesses[i].distance);
+            restaurantImageArray.push(yelpResponse.businesses[i].image_url);
+            restaurantURLArray.push(yelpResponse.businesses[i].url);
+           
         }
         console.log(restaurantArray);
         for (i = 0; i < restaurantArray.length; i++) {
@@ -130,7 +168,7 @@ $(document).on("click", ".theaterBtn", function (event) {
             var titleButtonEl = $("<button>");
             titleButtonEl.attr("class", "card restaurantBtn");
             titleButtonEl.attr("type", "button");
-            titleButtonEl.attr("id", restaurantArray[i]);
+            titleButtonEl.attr("id", i);
             titleButtonEl.text(restaurantArray[i]);
             listEl.append(titleButtonEl);
             titleListEl.append(listEl);
@@ -140,7 +178,12 @@ $(document).on("click", ".theaterBtn", function (event) {
 
 $(document).on("click", ".restaurantBtn", function (event) {
     selectedRestaurantName = $(event.target).text();
-    console.log("test");
+    selectedRestaurantDistance = restaurantDistanceArray[$(event.target).attr("id")];
+    selectedRestaurantImage = restaurantImageArray[$(event.target).attr("id")];
+    selectedRestaurantURL = restaurantURLArray[$(event.target).attr("id")];
+    console.log(selectedRestaurantDistance);
+    console.log(selectedRestaurantImage);
+    console.log(selectedRestaurantURL);
     var x = document.createElement("BR");
     titleListEl.empty();
     headlinEl.text("Your Picks");
@@ -149,31 +192,19 @@ $(document).on("click", ".restaurantBtn", function (event) {
     console.log(selectedRestaurantName);
     var filmEl = $("<h6>");
     var finalFilm = $("<div>");
-<<<<<<< HEAD
-    finalFilm.attr("class", "card ");
-=======
     finalFilm.attr("class", "card endPage");
->>>>>>> 4cd00780e48ceb04eea76fbb17ded698d007a06e
     finalFilm.text("You're seeing: " + selectedFilmName);
     filmEl.append(finalFilm);
     x;
     var cinEl = $("<h6>");
     var finalCin = $("<div>");
-<<<<<<< HEAD
-    finalCin.attr("class", "card ");
-=======
     finalCin.attr("class", "card endPage");
->>>>>>> 4cd00780e48ceb04eea76fbb17ded698d007a06e
     finalCin.text("Playing at " + selectedTheaterName);
     cinEl.append(finalCin);
     x;
     var restEl = $("<h6>");
     var finalRest = $("<div>");
-<<<<<<< HEAD
-    finalRest.attr("class", "card ");
-=======
     finalRest.attr("class", "card endPage");
->>>>>>> 4cd00780e48ceb04eea76fbb17ded698d007a06e
     finalRest.text("Enjoy your dinner at " + selectedRestaurantName + "!");
     restEl.append(finalRest);
     titleListEl.append(filmEl, cinEl, restEl);
