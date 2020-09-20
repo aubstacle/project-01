@@ -5,6 +5,7 @@
 .showingToday {
   text-align: center;
   color: aliceblue;
+  font-family: "Anton", sans-serif;
 }
 
 .header-style {
@@ -16,7 +17,23 @@
 .titleBtn,
 .theaterBtn,
 .restaurantBtn {
-  text-align: center;
-  color: aliceblue;
-  background-color: black;
+  text-align: initial;
+  color: beige;
+  background-color: transparent;
+  font-size: x-large;
+  font-style: italic;
+  display: flex;
+  align-content: center;
+}
+
+body {
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  height: 100%;
+  width: 100%;
 }
