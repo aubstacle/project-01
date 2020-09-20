@@ -17,9 +17,9 @@ var filmSettings = {
     "method": "GET",
     "timeout": 0,
     "headers": {
-        "x-api-key": "4KvTx6Itb83s7wFOmUo4kaMdXwaRQE6SVK9CmIFa",
+        "x-api-key": "1mdMjAni0T7GAJJn4GZdx2XjE6d58Wck1rYniiwX",
         "client": "GT",
-        "authorization": "Basic R1RGVDpEclNYOEVpNlFKVFo=",
+        "authorization": "Basic U1RVRF8xNDA6NjB1N3BtdGl6ZTRN",
         "territory": "US",
         "api-version": "v200",
         "geolocation": "33.753746;-84.386330",
@@ -38,9 +38,9 @@ $.ajax(filmSettings).done(function (response) {
     // console.log(titleArray)
     // console.log(buttonIdArray)
     for (i = 0; i < titleArray.length; i++) {
-        var listEl = $("<li>");
+        var listEl = $("<h6>");
         var titleButtonEl = $("<button>");
-        titleButtonEl.attr("class", "btn btn-primary titleBtn");
+        titleButtonEl.attr("class", "card titleBtn");
         titleButtonEl.attr("type", "button")
         titleButtonEl.attr("id", buttonIdArray[i]);
         titleButtonEl.text(titleArray[i]);
@@ -65,46 +65,46 @@ $(document).on("click", ".titleBtn", function (event) {
         "method": "GET",
         "timeout": 0,
         "headers": {
-            "x-api-key": "4KvTx6Itb83s7wFOmUo4kaMdXwaRQE6SVK9CmIFa",
+            "x-api-key": "1mdMjAni0T7GAJJn4GZdx2XjE6d58Wck1rYniiwX",
             "client": "GT",
-            "authorization": "Basic R1RGVDpEclNYOEVpNlFKVFo=",
+            "authorization": "Basic U1RVRF8xNDA6NjB1N3BtdGl6ZTRN",
             "territory": "US",
             "api-version": "v200",
             "geolocation": "33.753746;-84.386330",
             "device-datetime": currentTime
-    
+
         },
     };
-    
+
     $.ajax(closestSettings).done(function (response) {
-        for(i = 0; i < 5; i ++){
+        for (i = 0; i < 5; i++) {
             cinemaArray.push(response.cinemas[i].cinema_name)
             cinemaLatArray.push(response.cinemas[i].lat)
             cinemaLongArray.push(response.cinemas[i].lng)
-          }
-          console.log(cinemaLatArray)
-          console.log(cinemaLongArray)
-          for (i = 0; i < cinemaArray.length; i++) {
-            var listEl = $("<li>");
+        }
+        console.log(cinemaLatArray)
+        console.log(cinemaLongArray)
+        for (i = 0; i < cinemaArray.length; i++) {
+            var listEl = $("<h6>");
             var titleButtonEl = $("<button>");
-            titleButtonEl.attr("class", "btn btn-primary theaterBtn");
+            titleButtonEl.attr("class", "card theaterBtn");
             titleButtonEl.attr("type", "button")
             titleButtonEl.attr("id", cinemaLatArray[i] + "," + cinemaLongArray[i]);
             titleButtonEl.text(cinemaArray[i]);
             listEl.append(titleButtonEl);
             titleListEl.append(listEl);
-    
-    
+
+
         }
-    
+
     })
-    
-
-  
 
 
 
-  
+
+
+
+
 });
 
 $(document).on("click", ".theaterBtn", function (event) {
@@ -117,29 +117,29 @@ $(document).on("click", ".theaterBtn", function (event) {
     var yelpSettings = {
         "url": cors + "https://api.yelp.com/v3/businesses/search?latitude=" + latLongArray[0] + "&longitude=" + latLongArray[1],
         "method": "GET",
-        "headers": {           
-        "authorization":	"Bearer qItHfBqMcXSXkVpMIcSF71I2KbHwRJ-rxNbzAQGIHcPc-OHxM0V-xAedcHX55dgcgoxi_VEKSgbC9RBnQjdAqDQDgvbo_lENXqYxeGhD6GV_KLJHPCKKYznDY1diX3Yx", 
+        "headers": {
+            "authorization": "Bearer qItHfBqMcXSXkVpMIcSF71I2KbHwRJ-rxNbzAQGIHcPc-OHxM0V-xAedcHX55dgcgoxi_VEKSgbC9RBnQjdAqDQDgvbo_lENXqYxeGhD6GV_KLJHPCKKYznDY1diX3Yx",
         },
-        };
-    
-    $.ajax(yelpSettings).done(function (yelpResponse){
+    };
+
+    $.ajax(yelpSettings).done(function (yelpResponse) {
         console.log(yelpResponse)
-        for(i = 0; i < 10; i ++){
+        for (i = 0; i < 10; i++) {
             restaurantArray.push(yelpResponse.businesses[i].name)
-            
-          }
-          console.log(restaurantArray)
-          for (i = 0; i < restaurantArray.length; i++) {
-            var listEl = $("<li>");
+
+        }
+        console.log(restaurantArray)
+        for (i = 0; i < restaurantArray.length; i++) {
+            var listEl = $("<h6>");
             var titleButtonEl = $("<button>");
-            titleButtonEl.attr("class", "btn btn-primary restaurantBtn");
+            titleButtonEl.attr("class", "card restaurantBtn");
             titleButtonEl.attr("type", "button")
             titleButtonEl.attr("id", restaurantArray[i]);
             titleButtonEl.text(restaurantArray[i]);
             listEl.append(titleButtonEl);
             titleListEl.append(listEl);
-    
-    
+
+
         }
     })
 });

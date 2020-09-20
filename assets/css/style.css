@@ -12,3 +12,11 @@
   font-style: italic;
   font-weight: bolder;
 }
+
+.titleBtn,
+.theaterBtn,
+.restaurantBtn {
+  text-align: center;
+  color: aliceblue;
+  background-color: black;
+}
