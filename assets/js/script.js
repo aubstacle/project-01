@@ -8,11 +8,10 @@ var cinemaLongArray = [];
 var cors = "https://cors-anywhere.herokuapp.com/"
 var currentTime = moment().format("YYYY-MM-DDTHH:mm:ss") + "Z";
 var selectedFilmName = "";
-var selectedFilmId = "";
+var selectedTheaterName = "";
+var selectedRestaurantName = "";
 var currentLat = "";
 var currentLong = "";
-var theaterLat = "";
-var theaterLong = "";
 var filmSettings = {
     "url": cors + "https://api-gate2.movieglu.com/filmsNowShowing/?",
     "method": "GET",
@@ -111,6 +110,7 @@ $(document).on("click", ".titleBtn", function (event) {
 $(document).on("click", ".theaterBtn", function (event) {
     titleListEl.empty();
     selectedTheaterId = $(event.target).attr("id");
+    selectedTheaterName = $(event.target).text();
     console.log(selectedTheaterId)
     latLongArray = selectedTheaterId.split(",")
     console.log(latLongArray)
@@ -142,4 +142,17 @@ $(document).on("click", ".theaterBtn", function (event) {
     
         }
     })
+});
+
+$(document).on("click", ".restaurantBtn", function (event) {
+    selectedRestaurantName = $(event.target).text();
+    console.log("test");
+    titleListEl.empty();
+    console.log(selectedFilmName)
+    console.log(selectedTheaterName)
+    console.log(selectedRestaurantName)
+    
+
+
+
 });
