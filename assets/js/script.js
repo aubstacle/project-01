@@ -149,21 +149,32 @@ $(document).on("click", ".restaurantBtn", function (event) {
     console.log(selectedRestaurantName);
     var filmEl = $("<h6>");
     var finalFilm = $("<div>");
+<<<<<<< HEAD
     finalFilm.attr("class", "card ");
+=======
+    finalFilm.attr("class", "card endPage");
+>>>>>>> 4cd00780e48ceb04eea76fbb17ded698d007a06e
     finalFilm.text("You're seeing: " + selectedFilmName);
     filmEl.append(finalFilm);
     x;
     var cinEl = $("<h6>");
     var finalCin = $("<div>");
+<<<<<<< HEAD
     finalCin.attr("class", "card ");
+=======
+    finalCin.attr("class", "card endPage");
+>>>>>>> 4cd00780e48ceb04eea76fbb17ded698d007a06e
     finalCin.text("Playing at " + selectedTheaterName);
     cinEl.append(finalCin);
     x;
     var restEl = $("<h6>");
     var finalRest = $("<div>");
+<<<<<<< HEAD
     finalRest.attr("class", "card ");
+=======
+    finalRest.attr("class", "card endPage");
+>>>>>>> 4cd00780e48ceb04eea76fbb17ded698d007a06e
     finalRest.text("Enjoy your dinner at " + selectedRestaurantName + "!");
     restEl.append(finalRest);
     titleListEl.append(filmEl, cinEl, restEl);
-    document.getElementById("titleList").style.pointerEvents = "none";
 });
