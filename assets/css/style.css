@@ -29,7 +29,8 @@
 
 .titleBtn,
 .theaterBtn,
-.restaurantBtn {
+.restaurantBtn,
+.endPage {
   text-align: initial;
   color: beige;
   background-color: transparent;
