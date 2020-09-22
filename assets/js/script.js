@@ -8,9 +8,8 @@ var buttonIdArray = [];
 var cinemaArray = [];
 var cinemaLatArray = [];
 var cinemaLongArray = [];
-// This variable is used to dynamically populate the page with data from the Yelp fusion API (third ajax call - restaurants available)
+// These empty strings and arrays are used to receive all the data we need from both our APIs, as well as to populate all the data via dom manipulation
 var restaurantArray = [];
-// var cors is being used to avoid a cors error when testing the page locally
 var titlePosterArray = [];
 var titleSynopsisArray = [];
 var titleTrailerArray = [];
@@ -37,6 +36,7 @@ var restaurantURLArray = [];
 var selectedRestaurantDistance = "";
 var selectedRestaurantImage = "";
 var selectedRestaurantURL = "";
+// var cors is being used to avoid a cors error when testing the page locally
 var cors = "https://cors-anywhere.herokuapp.com/";
 // the following var is using moment.js to store the current time in the format necessary for the ajax calls
 var currentTime = moment().format("YYYY-MM-DDTHH:mm:ss") + "Z";
